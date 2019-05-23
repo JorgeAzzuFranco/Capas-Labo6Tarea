@@ -48,9 +48,15 @@ public class StudentDAOImpl implements StudentDAO {
 	}
 
 	@Override
-	public int delete(Student s) throws DataAccessException {
-		
-		return 0;
+	public int delete(int s) throws DataAccessException {
+		StringBuffer sb = new StringBuffer();
+		sb.append("DELETE * FROM public.student WHERE id_student = :s");
+		Query query = em.createNativeQuery(sb.toString(), Student.class);
+		query.setParameter("s",	s);
+		int resultSet = (int) query.getFirstResult();
+		return resultSet;
 	}
+
+
 
 }

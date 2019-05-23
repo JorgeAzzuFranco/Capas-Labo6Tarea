@@ -4,11 +4,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
+ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.uca.capas.daos.StudentDAO;
@@ -86,8 +85,8 @@ public class MainController {
 		return mav;
 	}
 	
-	@RequestMapping("/editar")
-	public ModelAndView formData2(@PathVariable(value="cStudent") String Code) {
+	@RequestMapping(value="/editar", method=RequestMethod.GET)
+	public ModelAndView formData2(@RequestParam("cStudent") String Code) {
 		ModelAndView mav = new ModelAndView();
 		Student s = null;
 		Integer code = Integer.parseInt(Code);
@@ -99,6 +98,20 @@ public class MainController {
 		
 		mav.addObject("student", s);
 		mav.setViewName("form2");
+		return mav;
+	}
+	
+	@RequestMapping(value="/eliminar", method=RequestMethod.GET)
+	public ModelAndView eliminar(@RequestParam("cStudent") String Code) {
+		ModelAndView mav = new ModelAndView();
+		Integer code = Integer.parseInt(Code);
+		try {
+			studentDao.delete(code);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		mav.setViewName("main");
 		return mav;
 	}
 }

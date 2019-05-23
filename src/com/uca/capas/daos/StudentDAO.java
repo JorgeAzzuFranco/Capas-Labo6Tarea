@@ -10,5 +10,5 @@ public interface StudentDAO {
 	List<Student> findAll() throws DataAccessException;
 	Student findOne(Integer code) throws DataAccessException;
 	int save(Student s, Integer newRow) throws DataAccessException;
-	int delete(Student s) throws DataAccessException;
+	int delete(int s) throws DataAccessException;
 }

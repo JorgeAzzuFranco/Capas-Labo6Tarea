@@ -22,7 +22,8 @@
 				<td>${students.lName}</td>
 				<td>${students.sAge}</td>
 				<td>${students.activoDelegate}</td>
-				<td><button onclick="${pageContext.request.contextPath}/editar?cStudent=${student.cStudent}" >Editar</button></td>
+				<td><button onclick="location.href='${pageContext.request.contextPath}/editar?cStudent=${students.cStudent}'" >Editar</button></td>
+				<td><button onclick="location.href='${pageContext.request.contextPath}/eliminar?cStudent=${students.cStudent}'" >Eliminar</button></td>
 			</tr>
 		</c:forEach>
 	</table>
